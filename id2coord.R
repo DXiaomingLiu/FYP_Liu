@@ -9,7 +9,11 @@ library(biomaRt)
 ensembl <- useMart('ENSEMBL_MART_SNP',dataset = 'hsapiens_snp')
 
 #To be changed to read csv of future SNP IDs of interest
-IDs <- c('rs2112347','rs4771122','rs11672660','rs10830963','rs2943645')
+IDs <- c('rs2112347','rs4771122','rs11672660','rs10830963','rs2943645') #Test IDs
+
+###To be uncommented
+#df_SNP <- read.csv('SNPs.csv',header = TRUE)
+#IDs < df_SNP$SNP_ID
 
 SNPs <- getBM(attributes = c('refsnp_id','chr_name',
                             'chrom_start',

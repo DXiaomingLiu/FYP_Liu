@@ -18,7 +18,8 @@ for row in csvread:
     item_range =  str(row[1])+':'+str(row[-2])+'-'+str(row[-1])
     direc = 'http://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/ALL.chr'+str(row[1])+\
             '.phase3_shapeit2_mvncall_integrated_v5a.20130502.genotypes.vcf.gz'
-    tabix_cmd = ['tabix', '-h', direc, item_range]
+    filename = str(row[0])+'.vcf'
+    tabix_cmd = ['tabix', '-h', direc, item_range, '>',filename ]
     print(tabix_cmd)
     tcmd = ['ls', '-t']
     #p = subprocess.check_output(tabix_cmd)
@@ -27,5 +28,6 @@ for row in csvread:
                          stderr = subprocess.PIPE)
     stdout, stderr = p.communicate()
     print(stdout.decode(), stderr.decode())
+    print("the commandline is {}".format(p.args))
 #Running tabix in bash to retrieve 1000G SNPs that fall within windows
 #p = subprocess.Popen()
