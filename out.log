@@ -1,0 +1,10 @@
+
+VCFtools - UNKNOWN
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf testvcf.vcf
+	--keep --recode
+
+Keeping individuals in 'keep' list
+Error: Could not open Individual file:--recode
