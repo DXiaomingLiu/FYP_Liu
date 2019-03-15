@@ -6,14 +6,15 @@
 library(biomaRt)
 
 ###
-ensembl <- useMart('ENSEMBL_MART_SNP',dataset = 'hsapiens_snp')
+ensembl <- useMart('ENSEMBL_MART_SNP',host="grch37.ensembl.org", 
+                   path="/biomart/martservice" ,dataset = 'hsapiens_snp')
 
 #To be changed to read csv of future SNP IDs of interest
-IDs <- c('rs2112347','rs4771122','rs11672660','rs10830963','rs2943645') #Test IDs
+#IDs <- c('rs2112347','rs4771122','rs11672660','rs10830963','rs2943645') #Test IDs
 
 ###To be uncommented
-#df_SNP <- read.csv('SNPs.csv',header = TRUE)
-#IDs < df_SNP$SNP_ID
+df_SNP <- read.csv('VariantData/SNPs.csv',header = TRUE)
+IDs <- df_SNP$SNP_ID
 
 SNPs <- getBM(attributes = c('refsnp_id','chr_name',
                             'chrom_start',
@@ -22,6 +23,7 @@ SNPs <- getBM(attributes = c('refsnp_id','chr_name',
              filters = 'snp_filter',values = IDs,
              mart = ensembl, uniqueRows = TRUE)
 size = 50000 #50kb window size
+SNPs$label <- df_SNP$LABEL
 SNPs$left <- SNPs$chrom_start - size
 SNPs$right <- SNPs$chrom_end + size
 
