@@ -24,6 +24,7 @@ pos = [None]*vcf_num
 labels = [None] * vcf_num
 
 plt.axis('off')
+
 for i in range(vcf_num):
     headers.append(allel.read_vcf_headers(vcfs[i]))
     labels[i] = vcfs[i].split('_')[-1]
@@ -40,6 +41,7 @@ for i in range(vcf_num):
     #print(alt)
     allele_to_color ={'A':(255/2,255/2,0),'C':(0,255/2,255/2),'G':(255/2,0,255/2),'T':(255/2,255/2,255/2)}
     INDEL = (255, 255, 255)
+
     colour_gt = np.zeros(dim,dtype=np.dtype((np.float32,(1,3))))
     for y in range(dim[0]): #for each snp
         for x in range(dim[1]): #in each individual
@@ -64,9 +66,18 @@ for i in range(vcf_num):
     colour_snps[i] = colour_gt
     pos[i] = file['variants/POS']
 
+    #plt.subplots_adjust(0, 0, 1, 1, 0, 0)
+    fig = plt.gcf()
+    for ax in fig.axes:
+        ax.axis('off')
+        ax.margins(0, 0)
+        ax.xaxis.set_major_locator(plt.NullLocator())
+        ax.yaxis.set_major_locator(plt.NullLocator())
+    plt.margins(0, 0)
+
     snp_im = gt.reshape((dim[0],dim[1]*dim[2]))
     plt.imshow(snp_im,cmap=cm.Greys_r)
-    plt.savefig('ImageData/Window_'+str(i))
+    plt.savefig('ImageData/Window_'+str(i))#bbox_inches = 'tight'
 
     #print('file finished')
     #print(len(headers[0][4]))

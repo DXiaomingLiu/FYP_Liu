@@ -15,7 +15,7 @@ imgs_rescaled = [None] * file_num
 
 for i in range(file_num):
     img = imread(file_names[i])
-    img = resize(img, (64,64), anti_aliasing=True)
+    img = resize(img, (64,64))
     imsave('ImageData/Rescaled/rescaled_window'+str(i)+'.png',img)
     imgs[i] = img
 

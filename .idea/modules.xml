@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../PycharmProjects/DLPrac/.idea/DLPrac.iml" filepath="$PROJECT_DIR$/../PycharmProjects/DLPrac/.idea/DLPrac.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/FYP_Liu.iml" filepath="$PROJECT_DIR$/.idea/FYP_Liu.iml" />
     </modules>
   </component>
